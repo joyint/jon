@@ -2,3 +2,4 @@
 2026-04-08T17:12:37.771Z project guard.denied "horst.schwarz@joydev.com must authenticate to perform this action. Run `joy auth`." [horst.schwarz@joydev.com]
 2026-04-08T17:13:52.959Z auth auth.session_created "session created for ai:claude@joy via delegation token" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
 2026-04-08T17:14:01.318Z JON-0002-8B item.created "Integrate joy-plugins into jon-cli" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
+2026-04-08T19:34:19.778Z JON-0003-40 item.created "Add --app flag to launch native app plugin" [ai:claude@joy delegated-by:cx-test@example.com]
