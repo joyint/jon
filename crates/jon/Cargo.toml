@@ -1,9 +1,9 @@
 [package]
 name = "jon"
-version = "0.1.2"
+version = "0.1.3"
 edition = "2021"
 license = "MIT"
-description = "Natural language interface for Joy and Jot (installs jon-cli)"
+description = "Natural language interface for Joy and Jot - CLI, TUI, and desktop app"
 repository = "https://github.com/joyint/jon"
 homepage = "https://joyint.com"
 readme = "README.md"
@@ -13,3 +13,5 @@ name = "jon"
 path = "src/main.rs"
 
 [dependencies]
+jon-cli = { version = "0.1.3", path = "../jon-cli" }
+anyhow = { workspace = true }
