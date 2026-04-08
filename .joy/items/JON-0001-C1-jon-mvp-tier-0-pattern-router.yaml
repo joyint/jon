@@ -1,0 +1,13 @@
+id: JON-0001-C1
+title: Jon MVP - Tier 0 Pattern Router
+type: epic
+status: new
+priority: high
+capabilities:
+- conceive
+- plan
+effort: 5
+created_by: ai:claude@joy
+created: 2026-04-08T16:22:16.518289562Z
+updated: 2026-04-08T16:22:16.518289562Z
+description: 'Implement the Tier 0 pattern router: 30-50 intents, subprocess calls to joy/jot with --json, output formatter.'

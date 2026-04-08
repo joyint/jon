@@ -1,0 +1,17 @@
+[package]
+name = "jon-cli"
+version = "0.1.1"
+edition = "2021"
+license = "MIT"
+description = "Natural language interface for Joy and Jot - CLI for the Joyint ecosystem"
+repository = "https://github.com/joyint/jon"
+homepage = "https://joyint.com"
+readme = "README.md"
+
+[[bin]]
+name = "jon"
+path = "src/main.rs"
+
+[dependencies]
+clap = { workspace = true }
+anyhow = { workspace = true }
