@@ -4,20 +4,20 @@ As of: 2026-04-08
 
 ## Executive Summary
 
-Jon is a natural language interface for Joy and Jot - available as a CLI binary on the terminal and as a chat window in the Joyint WebUI and apps. Jon has no data layer of its own - it calls Joy and Jot under the hood and translates between human language and structured commands.
+Jon is a natural language interface for Joy and Jyn - available as a CLI binary on the terminal and as a chat window in the Joyint WebUI and apps. Jon has no data layer of its own - it calls Joy and Jyn under the hood and translates between human language and structured commands.
 
 ```
-jon "what's my next task?"           --> jot ls --sort=priority --limit=1
+jon "what's my next task?"           --> jyn ls --sort=priority --limit=1
 jon "move JOY-0045 to review"        --> joy status JOY-0045 review
 jon "how much did AI cost this week" --> joy costs --since=monday
-jon "remind me to deploy at 3pm"     --> jot add "deploy" --due=15:00 --remind
+jon "remind me to deploy at 3pm"     --> jyn add "deploy" --due=15:00 --remind
 ```
 
-Jon completes the Joyint product trio: Joy plans and controls, Jot distributes and tracks, Jon understands and mediates. The name works like "ask Siri" or "hey Alexa" - a person, not an acronym.
+Jon completes the Joyint product trio: Joy plans and controls, Jyn distributes and tracks, Jon understands and mediates. The name works like "ask Siri" or "hey Alexa" - a person, not an acronym.
 
 **Core principle:** Jon always works. From air-gapped to cloud-connected, the interface stays the same - only the intelligence behind it scales.
 
-**Timing:** Jon MVP (Tier 0) can ship alongside Joy and Jot in Phase 1-2. Tier 2 (LLM-backed) follows in Phase 3+.
+**Timing:** Jon MVP (Tier 0) can ship alongside Joy and Jyn in Phase 1-2. Tier 2 (LLM-backed) follows in Phase 3+.
 
 -----
 
@@ -46,7 +46,7 @@ match input {
 }
 ```
 
-**What it handles:** Status transitions, task listing, cost queries, adding reminders, searching items, showing boards/roadmaps - anything that maps to a concrete Joy/Jot command.
+**What it handles:** Status transitions, task listing, cost queries, adding reminders, searching items, showing boards/roadmaps - anything that maps to a concrete Joy/Jyn command.
 
 **What it costs:** Zero bytes extra, zero latency, zero dependencies.
 
@@ -125,13 +125,13 @@ Every failed query is a signpost to the next tier - and to Joyint Pro.
 
 ## Subprocess Architecture: Jon Owns Nothing
 
-Jon has no data layer, no YAML parser, no Git integration, no state. It is a pure orchestrator that calls `joy` and `jot` as subprocesses.
+Jon has no data layer, no YAML parser, no Git integration, no state. It is a pure orchestrator that calls `joy` and `jyn` as subprocesses.
 
 ```mermaid
 flowchart LR
     U[User] -->|natural language| J[Jon]
     J -->|intent + args| R{Router}
-    R -->|task commands| JOT[jot CLI]
+    R -->|task commands| JOT[jyn CLI]
     R -->|PM commands| JOY[joy CLI]
     JOT -->|--json| J
     JOY -->|--json| J
@@ -140,21 +140,21 @@ flowchart LR
 
 ### Why This Is the Right Design
 
-**No duplicated logic.** Jon doesn't parse YAML, doesn't understand status workflows, doesn't know about milestones. Joy and Jot handle all domain logic. When Joy gets a new feature, Jon benefits immediately.
+**No duplicated logic.** Jon doesn't parse YAML, doesn't understand status workflows, doesn't know about milestones. Joy and Jyn handle all domain logic. When Joy gets a new feature, Jon benefits immediately.
 
 **No cache invalidation.** Jon doesn't maintain state. Every query is a fresh subprocess call. No stale data, no sync problems.
 
-**No version coupling.** Jon depends on Joy/Jot's `--json` output format, not their internals. As long as the JSON contract is stable, Jon, Joy, and Jot can be versioned independently.
+**No version coupling.** Jon depends on Joy/Jyn's `--json` output format, not their internals. As long as the JSON contract is stable, Jon, Joy, and Jyn can be versioned independently.
 
 **Testable in isolation.** Jon's test suite only needs to verify: (1) correct intent parsing, (2) correct command construction, (3) correct output formatting. No YAML fixtures, no Git repos, no filesystem setup.
 
 ### The JSON Contract
 
-Joy and Jot need a `--json` output flag. This is Jon's stable interface - human-readable output can change freely, JSON is the API contract.
+Joy and Jyn need a `--json` output flag. This is Jon's stable interface - human-readable output can change freely, JSON is the API contract.
 
 ```bash
 # Jon calls internally:
-jot ls --json --sort=priority --limit=1
+jyn ls --json --sort=priority --limit=1
 # --> [{"id":"JOT-001","title":"Deploy","due":"2026-04-09T15:00","priority":1}]
 
 # Jon formats for the user:
@@ -165,22 +165,22 @@ For Tier 2 (LLM), Jon feeds the JSON output as context into the prompt:
 
 ```
 System: You are Jon, a project assistant. The user asked: "what should I work on next?"
-Context (from jot ls --json): [{"id":"JOT-001","title":"Deploy",...},{"id":"JOT-002",...}]
+Context (from jyn ls --json): [{"id":"JOT-001","title":"Deploy",...},{"id":"JOT-002",...}]
 Context (from joy ls --json --status=in_progress): [{"id":"JOY-0045",...}]
 Respond concisely.
 ```
 
 ### Graceful Degradation
 
-Jon checks for `joy` and `jot` in PATH at startup and reports their versions. If one is missing, Jon degrades gracefully:
+Jon checks for `joy` and `jyn` in PATH at startup and reports their versions. If one is missing, Jon degrades gracefully:
 
 ```bash
-# Only jot installed
-jon "what's next?"        # --> works (routes to jot)
+# Only jyn installed
+jon "what's next?"        # --> works (routes to jyn)
 jon "show roadmap"        # --> "joy is not installed. Run: curl -fsSL get.joyint.com/joy | sh"
 
 # Neither installed
-jon "hello"               # --> "Jon needs joy and/or jot. Run: curl -fsSL get.joyint.com/all | sh"
+jon "hello"               # --> "Jon needs joy and/or jyn. Run: curl -fsSL get.joyint.com/all | sh"
 ```
 
 This makes Jon the ideal entry point for new users: install Jon first, it tells you what else you need and helps you get it.
@@ -193,17 +193,17 @@ This makes Jon the ideal entry point for new users: install Jon first, it tells 
 
 ```
 Joy   = Planning and Control      (PM, Governance, AI orchestration)
-Jot   = Distribution and Tracking (Task dispatch, Reminders, CalDAV)
+Jyn   = Distribution and Tracking (Task dispatch, Reminders, CalDAV)
 Jon   = Understanding and Mediation (Natural language, Context, Intelligence)
 ```
 
-Joy plans an AI job, Jot distributes the task to an agent or person, Jon is the conversational layer that lets anyone interact with the system without memorizing commands.
+Joy plans an AI job, Jyn distributes the task to an agent or person, Jon is the conversational layer that lets anyone interact with the system without memorizing commands.
 
 ```mermaid
 flowchart TD
     subgraph Products
         JOY[Joy<br>Planning & Control]
-        JOT[Jot<br>Distribution & Tracking]
+        JOT[Jyn<br>Distribution & Tracking]
     end
 
     subgraph Interface
@@ -232,8 +232,8 @@ curl -fsSL get.joyint.com/jon | sh
 
 # First run
 jon "help me get started"
-# --> I see joy and jot aren't installed yet.
-#     Joy is a project management tool, Jot is a task manager.
+# --> I see joy and jyn aren't installed yet.
+#     Joy is a project management tool, Jyn is a task manager.
 #     Want me to install both? (Y/n)
 
 # After setup
@@ -246,15 +246,15 @@ jon "add a task: set up CI pipeline"
 # --> Created JOY-0001: Set up CI pipeline
 ```
 
-Jon absorbs the learning curve. Instead of reading docs to understand the difference between `joy add` and `jot add`, users describe what they want and Jon routes it.
+Jon absorbs the learning curve. Instead of reading docs to understand the difference between `joy add` and `jyn add`, users describe what they want and Jon routes it.
 
 ### Jon as Toolchain Manager
 
-Beyond routing commands, Jon manages the Joyint toolchain itself - installing, updating, and diagnosing Joy and Jot.
+Beyond routing commands, Jon manages the Joyint toolchain itself - installing, updating, and diagnosing Joy and Jyn.
 
 ```bash
 jon install joy          # downloads joy via get.joyint.com/joy
-jon install jot          # downloads jot via get.joyint.com/jot
+jon install jyn          # downloads jyn via get.joyint.com/jyn
 jon install all          # both
 jon update               # updates all installed tools + jon itself
 jon update joy           # only joy
@@ -265,11 +265,11 @@ jon doctor               # checks versions, compatibility, PATH, JSON schema
 $ jon doctor
   jon   v0.3.0   ✓ up to date
   joy   v0.8.1   ✓ up to date    (JSON schema v2, compatible)
-  jot   v0.5.0   ⚠ update available (v0.5.2)
+  jyn   v0.5.0   ⚠ update available (v0.5.2)
   PATH            ✓ all binaries found
   LLM             ✓ Joyint Pro connected
 
-  Run 'jon update jot' to update.
+  Run 'jon update jyn' to update.
 ```
 
 This makes Jon the single entry point for toolchain management - like `rustup` for Rust. One command to install, update, and diagnose everything.
@@ -278,7 +278,7 @@ This makes Jon the single entry point for toolchain management - like `rustup` f
 
 ### Jon as AI Member: The User's Right Hand
 
-Jon can go beyond answering questions. As a project member's personal assistant, Jon can act on their behalf - picking up tasks, triggering AI jobs, and managing workflow transitions. The step from "answer questions" to "do things when I say so" is architecturally small: Jon already has subprocess access to Joy and Jot.
+Jon can go beyond answering questions. As a project member's personal assistant, Jon can act on their behalf - picking up tasks, triggering AI jobs, and managing workflow transitions. The step from "answer questions" to "do things when I say so" is architecturally small: Jon already has subprocess access to Joy and Jyn.
 
 ```bash
 # Passive: answer questions
@@ -355,7 +355,7 @@ jon "show roadmap across all projects"
 # --> merged timeline, sorted by milestone dates
 
 jon "what's the highest priority across everything?"
-# --> joy ls --json + jot ls --json (per project)
+# --> joy ls --json + jyn ls --json (per project)
 # --> aggregated, sorted by priority and deadline
 
 jon "how much did AI cost across all projects this month?"
@@ -408,7 +408,7 @@ Multi-project management is where Jon's value scales from individual convenience
 
 ## Demarcation: Jon vs. Joy Skill
 
-Joy also provides a Skill/MCP-Server definition that gives AI coding tools (Claude Code, Cursor, GitHub Copilot) direct access to Joy and Jot commands. This is a separate, independent feature - not part of Jon.
+Joy also provides a Skill/MCP-Server definition that gives AI coding tools (Claude Code, Cursor, GitHub Copilot) direct access to Joy and Jyn commands. This is a separate, independent feature - not part of Jon.
 
 The distinction:
 
@@ -416,7 +416,7 @@ The distinction:
 |---|-----|-----------|
 | **What it is** | Specialized assistant with project context | Generic tool interface for external LLMs |
 | **Where it runs** | Terminal (CLI) or Joyint (chat window) | Inside AI coding tools (Claude, Cursor, etc.) |
-| **Intelligence** | Optimized prompts, project-specific context injection, learned patterns | LLM uses Joy/Jot commands as raw tools |
+| **Intelligence** | Optimized prompts, project-specific context injection, learned patterns | LLM uses Joy/Jyn commands as raw tools |
 | **Context awareness** | Builds specialized context from Joy's YAML store per query | LLM manages its own context |
 | **Offline capable** | Yes (Tier 0 pattern router, Tier 1 local LLM) | No (requires external LLM) |
 | **Target user** | Anyone - including users without AI coding tools | Developers already working in an AI-assisted IDE |
@@ -441,14 +441,14 @@ jon-cli/                    # Binary crate (MIT)
       local_llm.rs          # Tier 1: candle integration (feature-gated)
       remote_llm.rs         # Tier 2: API client (OpenAI, Anthropic, Ollama, Joyint)
     subprocess/
-      mod.rs                # Joy/Jot subprocess execution
+      mod.rs                # Joy/Jyn subprocess execution
       json_parse.rs         # JSON output parsing
       discovery.rs          # PATH detection, version checking
     format/
       mod.rs                # Output formatting for terminal
 ```
 
-No `jon-core` crate needed. Jon is thin by design - all domain logic lives in `joy-core` and `jot-core`.
+No `jon-core` crate needed. Jon is thin by design - all domain logic lives in `joy-core` and `jyn-core`.
 
 ### Feature Gates
 
@@ -524,11 +524,11 @@ Tier 0 gives the facts. Tier 2 adds reasoning. Same query, same interface, diffe
 ## What Jon Is NOT
 
 - **Not a chatbot.** Jon is a command translator, not a conversation partner. Queries in, answers out. No session state, no personality, no smalltalk (unless the LLM tier adds it naturally).
-- **Not a replacement for Joy or Jot.** Both CLIs remain first-class interfaces. Jon is additive, not substitutive.
-- **Not a replacement for the Joy Skill.** The Joy Skill gives AI coding tools (Claude, Cursor) generic access to Joy/Jot commands. Jon is a specialized assistant with project-specific context. Both coexist independently.
-- **Not a data store.** Jon has no database, no cache, no config files beyond LLM credentials. All project data lives in Joy's and Jot's YAML files.
+- **Not a replacement for Joy or Jyn.** Both CLIs remain first-class interfaces. Jon is additive, not substitutive.
+- **Not a replacement for the Joy Skill.** The Joy Skill gives AI coding tools (Claude, Cursor) generic access to Joy/Jyn commands. Jon is a specialized assistant with project-specific context. Both coexist independently.
+- **Not a data store.** Jon has no database, no cache, no config files beyond LLM credentials. All project data lives in Joy's and Jyn's YAML files.
 - **Not an agent.** Jon doesn't execute multi-step plans autonomously. It translates a single query into one or more commands, shows the result, and waits for the next query. Agent orchestration is Joy's domain (`joy ai implement`).
-- **Not required.** The Joyint ecosystem works without Jon. Jon is fully opt-in - on the CLI (don't install it), in the WebUI (toggle it off), in the apps (same toggle). Joy, Jot, and the Joy Skill function identically with or without Jon.
+- **Not required.** The Joyint ecosystem works without Jon. Jon is fully opt-in - on the CLI (don't install it), in the WebUI (toggle it off), in the apps (same toggle). Joy, Jyn, and the Joy Skill function identically with or without Jon.
 
 -----
 
@@ -536,7 +536,7 @@ Tier 0 gives the facts. Tier 2 adds reasoning. Same query, same interface, diffe
 
 ### Short Term (2026)
 
-Jon is a fast, useful CLI shortcut. Users who already know Joy and Jot use Jon for quick queries ("what's next?", "how much did AI cost?"). New users discover the ecosystem through Jon without reading documentation first.
+Jon is a fast, useful CLI shortcut. Users who already know Joy and Jyn use Jon for quick queries ("what's next?", "how much did AI cost?"). New users discover the ecosystem through Jon without reading documentation first.
 
 ### Medium Term (2027)
 
@@ -544,7 +544,7 @@ Jon becomes the preferred way to interact with Joyint for non-power-users. Desig
 
 ### Long Term (2028+)
 
-Jon is the natural language API for the entire Joyint ecosystem. Third-party tools integrate via Jon rather than calling Joy/Jot directly. AI agents use Jon as their interface to project context. The question shifts from "how do I use Joy?" to "just ask Jon."
+Jon is the natural language API for the entire Joyint ecosystem. Third-party tools integrate via Jon rather than calling Joy/Jyn directly. AI agents use Jon as their interface to project context. The question shifts from "how do I use Joy?" to "just ask Jon."
 
 ```
 Today:     Your data | Your repo | Your terminal | Your AI agents

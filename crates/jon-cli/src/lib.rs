@@ -1,6 +1,6 @@
 use clap::Parser;
 
-/// Jon - Natural language interface for Joy and Jot
+/// Jon - Natural language interface for Joy and Jyn
 #[derive(Parser)]
 #[command(name = "jon", version, about)]
 struct Cli {
@@ -18,7 +18,7 @@ pub fn run() -> anyhow::Result<()> {
         }
         None => {
             println!("Jon v{}", env!("CARGO_PKG_VERSION"));
-            println!("Natural language interface for Joy and Jot.");
+            println!("Natural language interface for Joy and Jyn.");
             println!();
             println!("Usage: jon \"what's my next task?\"");
         }

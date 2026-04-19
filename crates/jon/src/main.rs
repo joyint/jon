@@ -1,4 +1,4 @@
-// Jon - Natural language interface for Joy and Jot
+// Jon - Natural language interface for Joy and Jyn
 //
 // Currently delegates to jon-cli (CLI mode). Future feature flags will add:
 // - TUI mode (terminal UI with panels and interactive navigation)

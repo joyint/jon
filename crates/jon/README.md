@@ -1,6 +1,6 @@
 # jon
 
-Natural language interface for [Joy](https://crates.io/crates/joy-cli) and [Jot](https://crates.io/crates/jot-cli). Part of the [Joyint](https://github.com/joyint) ecosystem.
+Natural language interface for [Joy](https://crates.io/crates/joy-cli) and [Jyn](https://crates.io/crates/jyn-cli). Part of the [Joyint](https://github.com/joyint) ecosystem.
 
 ```sh
 cargo install jon
