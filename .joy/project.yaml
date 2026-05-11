@@ -13,12 +13,26 @@ members:
       document: {}
       create: {}
       assign: {}
+    attestation:
+      attester: horst.schwarz@joydev.com
+      signed_fields:
+        email: ai:claude@joy
+        capabilities:
+          conceive: {}
+          plan: {}
+          design: {}
+          implement: {}
+          test: {}
+          review: {}
+          document: {}
+          create: {}
+          assign: {}
+      signed_at: 2026-05-11T04:55:26.393934Z
+      signature: 692374935e9213f8efc1cd32045c728c6cc5d8d710c44fadcae3d043be3473b8a5a42730feaf12e678993b56e77793ff8aa8d0766f954166e0ae1c8b2757f305
   horst.schwarz@joydev.com:
     capabilities: all
-    public_key: 1987c7de1eca9fcb3acc56584047d78a6e5defd7b7a9cb018ec23c1c17888e75
-    salt: 3ea0e0a90fbd4a5a197ce8893f7561cf43727bae88adbfd5be67b21d140376ad
-    ai_tokens:
-      ai:claude@joy:
-        token_key: f57235cff97103e49148c96bec4cd000412cd0d6d2dfa868ae6ad2c970a54b7e
-        created: 2026-04-08T17:13:00.066930604Z
+    verify_key: 1987c7de1eca9fcb3acc56584047d78a6e5defd7b7a9cb018ec23c1c17888e75
+    kdf_nonce: 3ea0e0a90fbd4a5a197ce8893f7561cf43727bae88adbfd5be67b21d140376ad
+    seed_wrap_passphrase: eb1e5ee3fbffde3d4512650662b0aa2d68695a8257070a56e7a0e5a0117a40320e36d7bf66a1907720353caededcb5dce92162c10cc3663e59ddd05a
+    seed_wrap_recovery: 70a192d2be0930f2c1a16b945f951314520e50896658fbdc8b5cc00c38a7c49272cb85be98b4f5c66e051c1ce26756caf82f21ba6ea4697bfc32c039
 created: 2026-04-08T13:29:51.264346190Z
