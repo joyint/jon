@@ -23,13 +23,13 @@ jon "how much did AI cost this week?" # -> joy costs --since=monday
 
 ## Documentation
 
-- [Vision](docs/dev/vision/README.md) - Product goals and design decisions
+- [Vision](VISION.md) - Product goals and design decisions
 
 For architecture and contributing guidelines see `joy ai init` after setup.
 
 ## Status
 
-Pre-development. See the [Vision](docs/dev/vision/README.md) for details.
+Pre-development. See the [Vision](VISION.md) for details.
 
 ## License
 
