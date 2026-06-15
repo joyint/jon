@@ -38,4 +38,9 @@ members:
     kdf_nonce: 3ea0e0a90fbd4a5a197ce8893f7561cf43727bae88adbfd5be67b21d140376ad
     seed_wrap_passphrase: eb1e5ee3fbffde3d4512650662b0aa2d68695a8257070a56e7a0e5a0117a40320e36d7bf66a1907720353caededcb5dce92162c10cc3663e59ddd05a
     seed_wrap_recovery: 70a192d2be0930f2c1a16b945f951314520e50896658fbdc8b5cc00c38a7c49272cb85be98b4f5c66e051c1ce26756caf82f21ba6ea4697bfc32c039
+    ai_delegations:
+      ai:claude@joy:
+        delegation_verifier: c42a769f7ff90f74b47fe33e6d9e0c5af8d03bf8e46d597bf1aea34dee24afd6
+        delegation_salt: 8afa04d0c613fc5af30c97d4daa8414d7cc375e9ed4249e4d34b373b7149424c
+        created: 2026-06-15T05:24:47.057787Z
 created: 2026-04-08T13:29:51.264346190Z
