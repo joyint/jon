@@ -1,0 +1,17 @@
+id: JON-000C-C7
+title: Archetypes and Blueprints
+type: epic
+status: new
+priority: medium
+tags:
+- pda
+capabilities:
+- conceive
+- plan
+effort: 5
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.948240753Z
+updated: 2026-07-18T15:13:06.948240753Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history: []
+description: 'Concept sections 5.2 to 5.4: archetypes as product-class knowledge (interaction conventions, class architecture patterns, the question set of things a first-time builder forgets) and blueprints as concrete stack realizations, 1:n per archetype, each carrying what a fast POC needs. Adds the engagement levels ''archetype only'' and ''archetype plus blueprint'', two separate decision items per bootstrap (archetype choice and blueprint choice have different half-lives), the gate rule that the blueprint stack decision is closed by whoever builds, and the Jonsons as internal session personas where no blueprint fits. Includes the open asset placement decision from section 5.6: archetypes shipped with the binary versus blueprints as platform assets. Deliberately left open by operator decision on 2026-07-18.'

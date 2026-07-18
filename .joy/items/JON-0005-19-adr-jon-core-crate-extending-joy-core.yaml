@@ -1,0 +1,17 @@
+id: JON-0005-19
+title: 'ADR: jon-core crate extending joy-core'
+type: decision
+status: closed
+priority: high
+capabilities:
+- conceive
+effort: 2
+validity: accepted
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:12:29.419434988Z
+updated: 2026-07-18T15:13:06.435083473Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:13:06.435083473Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'Context: VISION.md (2026-04-08) specifies a subprocess-only architecture (''No jon-core crate needed'', all domain logic in joy-core and jyn-core, jon-cli calls the CLIs with --json). The PDA concept (section 5) adds a long-running, stateful session form that generates documents, decision items and a task, needs template rendering, and must run identically from the CLI, the Tauri app, and the platform. Decision: introduce a jon-core library crate that links joy-core, the same pattern jyn-core uses. jon-core owns the PDA session engine and its templates; jon-cli, the app clients, and the platform jon.proto service stay thin. The subprocess JSON contract remains the intended mechanism for the command-routing tiers (rule engine, embedded LLM) where linking is not required. Alternatives considered: (a) subprocess-only as in VISION.md, rejected for the PDA because a stateful session that writes docs, items and chat turns through three frontends needs one shared library, not three reimplementations; (b) PDA inside joy-core, rejected because Jon stays an opt-in feature and joy-core stays free of LLM session logic. Consequences: VISION.md needs a revision round (tracked in the MVP epic), and the platform links jon-core next to joy-core. Directed by horst.schwarz@joydev.com on 2026-07-18.'

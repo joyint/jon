@@ -1,0 +1,17 @@
+id: JON-000E-3B
+title: Standalone PDA web experience
+type: epic
+status: new
+priority: medium
+tags:
+- pda
+capabilities:
+- conceive
+- plan
+effort: 5
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:07.067364368Z
+updated: 2026-07-18T15:13:07.067364368Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history: []
+description: 'A dedicated conversational bootstrap surface with its own look, mixing the Lovable AI and ChatPRD interaction patterns on top of the Jon PDA session: a guided interview pane next to a live view of the emerging product definition (documents, decisions, first task), in the visual language of the Joy app sign-in (holo gradient, accent tokens). The MVP ships a plain modal instead; this epic tracks the full experience. Deliberately left open by operator decision on 2026-07-18.'

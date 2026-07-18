@@ -1,0 +1,17 @@
+id: JON-000D-58
+title: Embedded LLM (Tier 1)
+type: epic
+status: new
+priority: low
+tags:
+- jon
+capabilities:
+- conceive
+- plan
+effort: 5
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:07.011679372Z
+updated: 2026-07-18T15:13:07.011679372Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history: []
+description: 'Concept section 4: an optional local model (1 to 3B parameters, quantized, CPU-capable, Rust-native inference) that extends Jon from command routing to conversation over project content: summaries, vague intent resolved into concrete command proposals, content questions across items. Reads over the same --json subprocess contract, writes nothing on its own; every proposed mutation goes through the same confirm-then-execute path as the rule engine. Build priority stays low: privacy and offline argument, strategically relevant for enterprise environments with restricted external LLM access. Deliberately left open by operator decision on 2026-07-18.'

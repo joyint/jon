@@ -1,0 +1,21 @@
+id: JON-0008-23
+title: 'jon init: CLI bootstrap flow'
+type: story
+status: review
+priority: high
+parent: JON-0004-44
+tags:
+- pda
+capabilities:
+- plan
+- implement
+- review
+effort: 4
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.651253501Z
+updated: 2026-07-18T15:31:44.662611197Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:31:44.662611197Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'jon init in an existing repository, running entirely with the local agent. With a .joy store present: say so and offer to continue as a normal Joy project. Without one: local agent setup building on joy ai init (tool choice from the joy-core tool list, the tool signs itself in, no API key prompt, no model choice; the tool decides the default model), then joy-level init plus the PDA session in the terminal. Punctual e2e test: scripted run bootstraps a project from an empty repo.'
