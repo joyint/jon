@@ -13,5 +13,11 @@ name = "jon"
 path = "src/main.rs"
 
 [dependencies]
+jon-core = { version = "0.1.3", path = "../jon-core" }
 clap = { workspace = true }
 anyhow = { workspace = true }
+
+[dev-dependencies]
+assert_cmd = "2"
+predicates = "3"
+tempfile = "3"
