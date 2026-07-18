@@ -1,10 +1,12 @@
 # Jon - Natural Language Interface for the Joyint Ecosystem
 
-As of: 2026-04-08
+As of: 2026-07-18 (PDA revision, decision JON-0005-19)
 
 ## Executive Summary
 
 Jon is a natural language interface for Joy and Jyn - available as a CLI binary on the terminal and as a chat window in the Joyint WebUI and apps. Jon has no data layer of its own - it calls Joy and Jyn under the hood and translates between human language and structured commands.
+
+Since the 2026-07 concept revision, Jon carries a second, larger role: the product development assistant (PDA), a guided, stateful session that takes a user from an idea to a fully bootstrapped Joy project: vision, architecture and contributing documents, the decisions that led there, and the first work item. The conversation ends where governance begins; from the first item on, Joy's existing mechanics take over.
 
 ```
 jon "what's my next task?"           --> jyn ls --sort=priority --limit=1
@@ -24,6 +26,8 @@ Jon completes the Joyint product trio: Joy plans and controls, Jyn distributes a
 ## Architecture: Three Tiers of Intelligence
 
 Jon is not one system - it's three tiers that activate based on what's available. Each tier handles a broader class of queries. The interface never changes.
+
+The 2026-07 concept document refines the tiers along a second axis: three manifestations of one interface. Tiers say how much intelligence is available; manifestations describe the form of the session. The rule engine (pattern router) is Tier 0, the embedded LLM is Tier 1, and the product development assistant (PDA) is a long-running, stateful session form that requires Tier 2 without being identical to it: Tier 2 also serves one-shot commands. The user never picks a manifestation; Jon activates the highest one that is available and needed.
 
 ### Tier 0: Pattern Router (built-in, instant, offline)
 
@@ -91,6 +95,10 @@ jon "review the cost trend for AI jobs and flag anomalies"
 
 **What it costs:** API usage fees (own key) or via Joyint Pro.
 
+### The Product Development Assistant (PDA)
+
+The PDA is the session form on top of Tier 2 (epic JON-0004-44): a guided interview that turns an idea into a decided product definition inside a fresh Joy project. One session on an empty project produces exactly five kinds of output (concept section 5.1): VISION.md, ARCHITECTURE.md, CONTRIBUTING.md, a hard-capped set of decision items recorded while the forks happen, and one task item as the single entry point for implementation. The PDA asks first and proposes after; everything it writes enters the project on the user's behalf, as the user via jon. Entry points are `jon init` on the CLI (the session runs entirely with the local agent, set up on top of `joy ai init`) and the New-project flow on joyint.com and in the apps. Guided archetype and blueprint support follows in JON-000C-C7.
+
 ### Tier Selection Logic
 
 Jon picks the highest available tier automatically. The user never has to think about it.
@@ -125,7 +133,7 @@ Every failed query is a signpost to the next tier - and to Joyint Pro.
 
 ## Subprocess Architecture: Jon Owns Nothing
 
-Jon has no data layer, no YAML parser, no Git integration, no state. It is a pure orchestrator that calls `joy` and `jyn` as subprocesses.
+For the command-routing manifestations (rule engine, embedded LLM) Jon has no data layer, no YAML parser, no Git integration, no state: a pure orchestrator that calls `joy` and `jyn` as subprocesses. The PDA is the deliberate exception: its session logic lives in the `jon-core` library, which links `joy-core` the same way `jyn-core` does (decision JON-0005-19), so documents and items are written through the same domain logic every other surface uses. jon-core still owns no state of its own; everything it writes lands in the project's `.joy` store and git history.
 
 ```mermaid
 flowchart LR
@@ -432,23 +440,24 @@ Both coexist without conflict. A developer might use the Joy Skill in Cursor for
 ### Crate Structure
 
 ```
+jon-core/                   # Library crate (MIT): the PDA session engine
+  src/
+    bootstrap.rs            # inspect + bootstrap (joy init, doc scaffolds, tool setup)
+    pda.rs                  # MiniJinja session rendering (ADR-024 pattern)
+  templates/pda/session.md  # The PDA interview template
+  data/pda/interview.yaml   # Stage and question definitions
+  data/docs/                # VISION/ARCHITECTURE/CONTRIBUTING scaffolds
+
 jon-cli/                    # Binary crate (MIT)
   src/
-    main.rs                 # Entry point, argument parsing
-    router/
-      mod.rs                # Tier selection logic
-      pattern.rs            # Tier 0: regex/keyword matching
-      local_llm.rs          # Tier 1: candle integration (feature-gated)
-      remote_llm.rs         # Tier 2: API client (OpenAI, Anthropic, Ollama, Joyint)
-    subprocess/
-      mod.rs                # Joy/Jyn subprocess execution
-      json_parse.rs         # JSON output parsing
-      discovery.rs          # PATH detection, version checking
-    format/
-      mod.rs                # Output formatting for terminal
+    lib.rs                  # jon init (PDA bootstrap) + query entry
+    router/                 # Tier selection, Tier 0 patterns (JON-0001-C1, planned)
+    subprocess/             # Joy/Jyn subprocess execution (planned)
+
+jon/                        # Umbrella binary; TUI/desktop modes later
 ```
 
-No `jon-core` crate needed. Jon is thin by design - all domain logic lives in `joy-core` and `jyn-core`.
+The routing tiers stay thin and subprocess-based; the PDA's shared session logic lives in `jon-core` (decision JON-0005-19, superseding the earlier "no jon-core crate needed" rule in this document). All domain logic still lives in `joy-core` and `jyn-core`; jon-core composes it.
 
 ### Feature Gates
 
@@ -523,7 +532,7 @@ Tier 0 gives the facts. Tier 2 adds reasoning. Same query, same interface, diffe
 
 ## What Jon Is NOT
 
-- **Not a chatbot.** Jon is a command translator, not a conversation partner. Queries in, answers out. No session state, no personality, no smalltalk (unless the LLM tier adds it naturally).
+- **Not a general chatbot.** In its routing manifestations Jon is a command translator: queries in, answers out, no session state. The one deliberate exception is the PDA session (JON-0004-44), which is stateful for the length of one bootstrap conversation and ends where governance begins.
 - **Not a replacement for Joy or Jyn.** Both CLIs remain first-class interfaces. Jon is additive, not substitutive.
 - **Not a replacement for the Joy Skill.** The Joy Skill gives AI coding tools (Claude, Cursor) generic access to Joy/Jyn commands. Jon is a specialized assistant with project-specific context. Both coexist independently.
 - **Not a data store.** Jon has no database, no cache, no config files beyond LLM credentials. All project data lives in Joy's and Jyn's YAML files.
