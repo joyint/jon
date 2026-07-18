@@ -18,3 +18,6 @@
 2026-07-18T15:31:44.723Z JON-000B-BA item.status_changed "new -> review" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
 2026-07-18T15:31:44.777Z JON-0009-C5 item.status_changed "new -> in-progress" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
 2026-07-18T15:31:44.830Z JON-000A-24 item.status_changed "new -> in-progress" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
+2026-07-18T15:58:42.366Z JON-0004-44 item.status_changed "new -> in-progress" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
+2026-07-18T15:58:42.415Z JON-0009-C5 item.status_changed "in-progress -> review" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]
+2026-07-18T15:58:42.464Z JON-000A-24 item.status_changed "in-progress -> review" [ai:claude@joy delegated-by:horst.schwarz@joydev.com]

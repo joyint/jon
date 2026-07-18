@@ -1,7 +1,7 @@
 id: JON-000A-24
 title: 'app: New project modal flow'
 type: story
-status: in-progress
+status: review
 priority: high
 parent: JON-0004-44
 assignees:
@@ -15,9 +15,11 @@ capabilities:
 effort: 4
 created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
 created: 2026-07-18T15:13:06.820770470Z
-updated: 2026-07-18T15:31:44.824863966Z
+updated: 2026-07-18T15:58:42.458008103Z
 updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
 history:
 - date: 2026-07-18T15:31:44.824863966Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+- date: 2026-07-18T15:58:42.458008103Z
   by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
 description: 'A ''New'' button right of ''+ Add'' (web ProjectOverview, desktop StartScreen) opening a small plain modal built from the existing Dialog primitives, no custom look. Step 1: repository input. If the repo already has a .joy store, the same modal says so and offers Add instead of Cancel; Add continues exactly like the ''+ Add'' register flow. If not, the modal offers the tool selection from the provider catalog plus API key and monthly limit with the per-tool recommendation (no model dropdown), then the shell opens with a collapsed rail in a chat named ''Jon PDA'' where the PDA session runs. The desktop local-folder path uses the local agent instead of key entry. Mirror item in the app backlog (JAPP).'
