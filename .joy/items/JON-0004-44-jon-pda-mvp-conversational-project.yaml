@@ -1,0 +1,19 @@
+id: JON-0004-44
+title: 'Jon PDA MVP: conversational project bootstrap'
+type: epic
+status: in-progress
+priority: high
+assignees:
+- member: ai:claude@joy
+capabilities:
+- conceive
+- plan
+effort: 5
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:12:29.368826281Z
+updated: 2026-07-18T15:58:42.360812406Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:58:42.360812406Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'Implements the product development assistant (PDA) from the concept document ''Jon - Natuerlichsprachliches Interface und Produktentwicklungsassistent'' (https://docs.int.joydev.com/doc/jon-naturlichsprachliches-interface-und-produktentwicklungsassistent-ZwZyiEcHSI), scoped to the first engagement level (no archetype, section 5.4). A PDA session on an empty project produces exactly the five outputs of section 5.1: VISION.md, ARCHITECTURE.md, CONTRIBUTING.md, a small capped set of decision items, and one task item as the single entry point for implementation. Entry points: ''jon init'' on the CLI, running entirely with the local agent set up on top of ''joy ai init'', and a plain modal ''New'' flow in the app next to ''+ Add''. All session logic lives in the new jon-core crate (extends joy-core); jon-cli, the Tauri client, and the platform jon.proto service are thin clients. Out of scope here, tracked in their own epics: archetypes and blueprints, rule engine (JON-0001-C1), embedded LLM, the standalone Lovable-class PDA web experience, and model selection (tracked in the Joy backlog; the tool decides the default model for now). Not production quality yet: targeted unit and e2e tests only, further iterations expected.'

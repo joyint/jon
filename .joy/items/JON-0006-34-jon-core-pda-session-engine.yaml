@@ -1,0 +1,21 @@
+id: JON-0006-34
+title: 'jon-core: PDA session engine'
+type: story
+status: review
+priority: high
+parent: JON-0004-44
+tags:
+- pda
+capabilities:
+- plan
+- implement
+- review
+effort: 4
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.502638817Z
+updated: 2026-07-18T15:31:44.567257389Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:31:44.567257389Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'Session state machine for the product development assistant, living in the new jon-core crate (per JON-0005-19). Drives the interview over chat turns, asks before proposing, and generates the section 5.1 outputs through joy-core: VISION.md, ARCHITECTURE.md, CONTRIBUTING.md, a hard-capped set of decision items created during the conversation, and exactly one task item whose body summarizes and references the three documents without inlining them. Everything the session writes is proposed to the user first and enters the project as the user via jon, never as an agent identity. Execution runs with the local agent (adapter set up on top of joy ai init). Targeted unit tests: a scripted happy-path session produces the five outputs.'

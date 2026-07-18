@@ -1,0 +1,21 @@
+id: JON-0007-9F
+title: 'jon-core: PDA dialog template'
+type: story
+status: review
+priority: high
+parent: JON-0004-44
+tags:
+- pda
+capabilities:
+- plan
+- implement
+- review
+effort: 3
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.578146935Z
+updated: 2026-07-18T15:31:44.615865548Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:31:44.615865548Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'The PDA interview is a template in jon-core using the same technology as Joy''s AI tool instruction templates: MiniJinja, embedded via include_str!, structured YAML data alongside. The template defines the interview stages for the three documents (vision first: what, for whom, why; then architecture at the chosen level of detail; then contributing), the decision cap rule (a handful of real forks, everything else is prose in ARCHITECTURE.md), and the closing task creation. Scoped to the first engagement level: no archetype, no blueprint questions.'

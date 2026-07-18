@@ -1,0 +1,19 @@
+id: JON-000B-BA
+title: Revise VISION.md, fill ARCHITECTURE.md and CONTRIBUTING.md
+type: task
+status: review
+priority: medium
+parent: JON-0004-44
+tags:
+- pda
+capabilities:
+- implement
+effort: 2
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.891135986Z
+updated: 2026-07-18T15:31:44.717696577Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:31:44.717696577Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: VISION.md still specifies the subprocess-only design ('No jon-core crate needed') and the plain three-tier model. Revise it to the three manifestations refinement and the PDA per the concept document and JON-0005-19, and mark the superseded passages. ARCHITECTURE.md and CONTRIBUTING.md are template scaffolds; fill them, they are specification, not background reading.

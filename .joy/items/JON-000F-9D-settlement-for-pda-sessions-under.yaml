@@ -1,0 +1,16 @@
+id: JON-000F-9D
+title: Settlement for PDA sessions under Joyint Pro
+type: decision
+status: new
+priority: medium
+tags:
+- pda
+capabilities:
+- conceive
+effort: 2
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:07.131081091Z
+updated: 2026-07-18T15:13:07.131081091Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history: []
+description: A tier 2 PDA session under Joyint Pro burns real tokens, booked as the user via jon, outside any member budget, so Jon's consumption currently sits outside settlement (concept section 5.6). Bundled session quotas per plan are the likely answer. This must be an explicit pricing decision, not an emergent one; it needs an operator-level pricing call and stays proposed until then.

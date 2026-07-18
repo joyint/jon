@@ -1,0 +1,33 @@
+# The PDA interview (concept section 5.1): three document stages, run
+# in order. The assistant asks first and proposes only after the user
+# has answered. Questions are the list of things a first-time builder
+# forgets to think about; archetype- and blueprint-specific question
+# sets arrive with JON-000C-C7.
+stages:
+  - doc: vision
+    title: Vision
+    goal: what the product is, for whom, and why
+    questions:
+      - What do you want to build? Describe it in your own words.
+      - Who is this for, and who suffers most while it does not exist?
+      - Why is this worth building now?
+      - What are the two or three outcomes that make the first version a success?
+      - What is this product explicitly NOT? Where does its scope end?
+      - Under which license model should it ship?
+  - doc: architecture
+    title: Architecture
+    goal: the structural description of the solution, at the level of detail the user chooses
+    questions:
+      - What shape should the solution take (a service, a web app, a desktop app, a CLI, several parts)?
+      - Which qualities matter most (speed of iteration, correctness, offline use, privacy, scale)?
+      - Which existing systems, data sources, or constraints must it fit into?
+      - Where does the data live, in what form, and who owns it?
+      - Which performance or resource targets matter from day one?
+  - doc: contributing
+    title: Contributing
+    goal: working agreements, conventions, and the ground rules AI members work under
+    questions:
+      - Who will build this (you, a team, AI members, a mix), and how autonomously may AI work?
+      - Which conventions should code and commit messages follow?
+      - What must be tested before a change counts as done?
+      - How should branching, review, and releases work?

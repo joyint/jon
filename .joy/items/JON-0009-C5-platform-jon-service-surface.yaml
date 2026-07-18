@@ -1,0 +1,25 @@
+id: JON-0009-C5
+title: 'platform: Jon service surface'
+type: story
+status: review
+priority: high
+parent: JON-0004-44
+assignees:
+- member: ai:claude@joy
+tags:
+- pda
+capabilities:
+- plan
+- implement
+- review
+effort: 4
+created_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+created: 2026-07-18T15:13:06.736891112Z
+updated: 2026-07-18T15:58:42.409363970Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+history:
+- date: 2026-07-18T15:31:44.771607155Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+- date: 2026-07-18T15:58:42.409363970Z
+  by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+description: 'New jon.proto service on the platform (planned as phase 3 in JP-002F-B1): inspect a repository URL for a .joy store, bootstrap a project without one (clone, init via jon-core, open the ''Jon PDA'' chat, run the PDA session server-side, attributed as the user via jon), and surface a per-tool monthly budget recommendation in the provider catalog (providers.toml, ListProviders). Registration of repos that already have .joy keeps using RegisterProject unchanged. Mirror item in the platform backlog (JP).'
