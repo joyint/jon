@@ -10,3 +10,4 @@ target/
 
 # Claude Code worktrees / generated AI config
 .claude/
+.DS_Store
