@@ -44,4 +44,62 @@ members:
         delegation_verifier: c42a769f7ff90f74b47fe33e6d9e0c5af8d03bf8e46d597bf1aea34dee24afd6
         delegation_salt: 8afa04d0c613fc5af30c97d4daa8414d7cc375e9ed4249e4d34b373b7149424c
         created: 2026-06-15T05:24:47.057787Z
+  philipp@joyint.com:
+    capabilities:
+      conceive: {}
+      plan: {}
+      design: {}
+      implement: {}
+      test: {}
+      review: {}
+      document: {}
+      create: {}
+      assign: {}
+    enrollment_verifier: 2c8c801a62d22ba365eee9f72b9d744b625091a4f0694b956cff00e7681d930b:1bab230bc8eedc45c7accabc9909fb2ce08f2301cc4f727bb40b8d5caa51ab87
+    attestation:
+      attester: horst.schwarz@joydev.com
+      signed_fields:
+        email: philipp@joyint.com
+        capabilities:
+          conceive: {}
+          plan: {}
+          design: {}
+          implement: {}
+          test: {}
+          review: {}
+          document: {}
+          create: {}
+          assign: {}
+        otp_hash: 2c8c801a62d22ba365eee9f72b9d744b625091a4f0694b956cff00e7681d930b:1bab230bc8eedc45c7accabc9909fb2ce08f2301cc4f727bb40b8d5caa51ab87
+      signed_at: 2026-08-22T08:40:42.675333677Z
+      signature: e3ccdb0a780a68d5df7965e6098523583f638ce658f20afb36d43c9de6f4698529690d710755a9aec4e7982386eff7ca8b29a5d48106d580dbb218702cdb6908
+  roland@joyint.com:
+    capabilities:
+      conceive: {}
+      plan: {}
+      design: {}
+      implement: {}
+      test: {}
+      review: {}
+      document: {}
+      create: {}
+      assign: {}
+    enrollment_verifier: 7772010f1f19684cc856993a9a6f40e107874054e6e3cbdd0d37367b1b737f6e:a0b4cb84434ba9d652958ce283435fa42da9b45186817d673ae6055a6017640d
+    attestation:
+      attester: horst.schwarz@joydev.com
+      signed_fields:
+        email: roland@joyint.com
+        capabilities:
+          conceive: {}
+          plan: {}
+          design: {}
+          implement: {}
+          test: {}
+          review: {}
+          document: {}
+          create: {}
+          assign: {}
+        otp_hash: 7772010f1f19684cc856993a9a6f40e107874054e6e3cbdd0d37367b1b737f6e:a0b4cb84434ba9d652958ce283435fa42da9b45186817d673ae6055a6017640d
+      signed_at: 2026-08-22T08:33:50.281374034Z
+      signature: 495a79ec763be4224920815e77b650edf6756dbb04dd4b412250f1bfb0a86b7c3ea11d2fbeae96d29f37aada2c60a006af8b29f15563df124b887e26be91b40b
 created: 2026-04-08T13:29:51.264346190Z
