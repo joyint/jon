@@ -1,12 +1,17 @@
 id: JON-0003-40
 title: Add --app flag to launch native app plugin
 type: task
-status: new
+status: closed
 priority: medium
 capabilities:
 - implement
 effort: 2
 created_by: ai:claude@joy
 created: 2026-04-08T19:34:19.772305106Z
-updated: 2026-04-08T19:34:19.772305106Z
+updated: 2026-09-01T21:08:51.453514824Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
 description: jon --app launches the native Jon app via the plugin system. If joyint-jon-app is not installed, offer to download it.
+comments:
+- author: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+  date: 2026-09-01T21:08:51.426765088Z
+  text: 'Closed in the backlog sweep of 2026-09-01 (ordered by Horst): no longer current: the Jon concept offers Jon inside the apps; no --app flag.'

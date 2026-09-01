@@ -1,12 +1,17 @@
 id: JON-0002-8B
 title: Integrate joy-plugins into jon-cli
 type: task
-status: new
+status: closed
 priority: medium
 capabilities:
 - implement
 effort: 2
 created_by: ai:claude@joy
 created: 2026-04-08T17:14:01.314820259Z
-updated: 2026-04-08T17:14:01.314820259Z
+updated: 2026-09-01T21:08:51.400564942Z
+updated_by: ai:claude@joy delegated-by:horst.schwarz@joydev.com
 description: Add joy-plugins dependency to jon-cli. Wire up plugin discovery and command forwarding for platform features (joyint-connect).
+comments:
+- author: ai:claude@joy delegated-by:horst.schwarz@joydev.com
+  date: 2026-09-01T21:08:51.374386483Z
+  text: 'Closed in the backlog sweep of 2026-09-01 (ordered by Horst): no longer current: the Jon concept (Joydev Docs, July) keeps Jon a thin subprocess layer over joy; no joy-plugins crate.'
